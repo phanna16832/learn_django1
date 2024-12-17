@@ -9,6 +9,9 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
+#import dj_data_base_url
+import dj_database_url
+import os
 
 from pathlib import Path
 
@@ -20,12 +23,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-lk6wz_l*y!$ptb*gyy@)@gj87u%2#qp4(xew58u9f#5%*0$hdo'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "False") == "true"
 
-ALLOWED_HOSTS = ['.vercel.app']
+ALLOWED_HOSTS = os.environ.get("ALOWED_HOSTS").split(" ")
 
 
 # Application definition
@@ -81,7 +84,9 @@ DATABASES = {
     }
 }
 
-#postgresql://learn_django_user:Yo8NdaTdl9hDOUFs7tx2B6dgaC3PL6Mc@dpg-ct8rkeqj1k6c73eb5a90-a.singapore-postgres.render.com/learn_django
+database_url = os.environ.get("DATABASE_URL")
+DATABASES ['default'] = dj_database_url.parse("database_url")
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
