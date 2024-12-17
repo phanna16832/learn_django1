@@ -81,6 +81,7 @@ DATABASES = {
     }
 }
 
+#postgresql://learn_django_user:Yo8NdaTdl9hDOUFs7tx2B6dgaC3PL6Mc@dpg-ct8rkeqj1k6c73eb5a90-a.singapore-postgres.render.com/learn_django
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
